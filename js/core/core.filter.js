@@ -7,22 +7,36 @@
  */
 function _fnFeatureHtmlFilter ( settings )
 {
+	var sFilterTagId = settings.sFilterTagId;
+	var oFilterObject= $("#"+sFilterTagId);
 	var classes = settings.oClasses;
 	var tableId = settings.sTableId;
 	var previousSearch = settings.oPreviousSearch;
 	var features = settings.aanFeatures;
 	var input = '<input type="search" class="'+classes.sFilterInput+'"/>';
 
-	var str = settings.oLanguage.sSearch;
-	str = str.match(/_INPUT_/) ?
-		str.replace('_INPUT_', input) :
-		str+input;
+	var inputObject;
+	var filter;
+	if (!sFilterTagId || !oFilterObject)
+	{
+		var str = settings.oLanguage.sSearch;
+		str = str.match(/_INPUT_/) ?
+			str.replace('_INPUT_', input) :
+			str+input;
 
-	var filter = $('<div/>', {
-			'id': ! features.f ? tableId+'_filter' : null,
-			'class': classes.sFilter
-		} )
-		.append( $('<label/>' ).append( str ) );
+		filter = $('<div/>', {
+				'id': ! features.f ? tableId+'_filter' : null,
+				'class': classes.sFilter
+			} )
+			.append( $('<label/>' ).append( str ) );
+
+		inputObject= $('input', filter);
+	}
+	else
+	{
+		inputObject=oFilterObject;
+		filter=('');
+	}
 
 	var searchFn = function() {
 		/* Update all other filter input elements for the new display */
@@ -43,7 +57,7 @@ function _fnFeatureHtmlFilter ( settings )
 			_fnDraw( settings );
 		}
 	};
-	var jqFilter = $('input', filter)
+	var jqFilter = inputObject
 		.val( previousSearch.sSearch )
 		.bind(
 			'keyup.DT search.DT input.DT paste.DT cut.DT',

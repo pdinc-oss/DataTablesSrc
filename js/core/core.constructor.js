@@ -131,6 +131,7 @@ _fnMap( oSettings, oInit, [
 	"sAjaxDataProp",
 	"iStateDuration",
 	"sDom",
+	"sFilterTagId",
 	"bSortCellsTop",
 	"iTabIndex",
 	"fnStateLoadCallback",
