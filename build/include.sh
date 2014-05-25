@@ -9,19 +9,19 @@ JSDOC="/usr/local/jsdoc/jsdoc"
 # $1 - string - section name to echo
 function echo_section {
 	# Cyan
-	echo "\033[0;36m  ${1}\033[0m"
+	echo -e "\033[0;36m  ${1}\033[0m"
 }
 
 # $1 - string - message to echo
 function echo_msg {
 	# Green
-	echo "\033[0;32m    ${1}\033[0m"
+	echo -e "\033[0;32m    ${1}\033[0m"
 }
 
 # $1 - string - error to echo
 function echo_error {
 	# Red
-	echo "\033[0;31m  ${1}\033[0m"
+	echo -e "\033[0;31m  ${1}\033[0m"
 }
 
 # Will compress a CSS file using SASS, saving the new file into the same
